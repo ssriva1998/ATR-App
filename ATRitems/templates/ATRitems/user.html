@@ -1,0 +1,34 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'ATRitems/style.css' %}">
+
+<h1> Report on Action Taken for {{user.get_username}} </h1>
+
+{% if pending_item_list %}
+	<table>
+		<tr>
+		<th> Meeting and Item </th>
+		<th> Title </th>
+		<th> Decision of the Senate</th>
+		<th> Responsible Functionary </th>
+		<th> Status </th>
+		</tr>
+		{% for item in pending_item_list %}
+			{% if user.get_username == item.functionary %}
+				<tr>
+					<td> {{item.meeting_no}}/{{item.agenda_no}} </td>
+					<td> {{item.agenda_item}} </td>
+					<td> {{item.decision_taken}} </td>
+					<td> {{item.functionary}} </td>
+				{% if item.is_complete %}
+				<td> {{item.status}} </br> <b>Action Complete </b>  </td>
+				{% else %}
+				<td> {{item.status}} </br> <b>Action Pending </b> </td>
+				{% endif %}
+				</tr>
+			{% endif %}
+		{% endfor %}
+	</table>
+{% else %}
+	<p>No items</p>
+{% endif %}
