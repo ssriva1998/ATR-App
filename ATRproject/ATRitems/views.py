@@ -10,13 +10,13 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def index(request):
-	pending_item_list = Item.objects.order_by('meeting_no')[:]
+	pending_item_list = Item.objects.order_by('year_no')[:]
 	template = loader.get_template('ATRitems/index.html')
 	context = { 'pending_item_list' : pending_item_list, }
 	return HttpResponse(template.render(context,request))
 
 def user(request):
-	pending_item_list = Item.objects.order_by('meeting_no')[:]
+	pending_item_list = Item.objects.order_by('year_no')[:]
 	template = loader.get_template('ATRitems/user.html')
 	user = request.user
 	context = { 'pending_item_list' : pending_item_list, 'user' : user,}

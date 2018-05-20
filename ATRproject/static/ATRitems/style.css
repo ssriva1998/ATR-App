@@ -1,0 +1,11 @@
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+table {
+	border-collapse: collapse;
+}
+
+h1 {text-align:center;}
+
+table, th, td {
+	border: 1px solid black;
+}
